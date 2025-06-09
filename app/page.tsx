@@ -1,11 +1,11 @@
 // app/page.tsx
-
+"use client";
 export const metadata = {
   title: "Project | Full Stack App",
   description: "Landing page of your full-stack application",
 };
 
-"use client";
+
 
 import React from 'react';
 
