@@ -70,7 +70,9 @@ export async function POST(req: NextRequest) {
 
     // Return the AI's response
     return NextResponse.json({ response: aiResponseText }, { status: 200 });
-  } catch (error: any) {
+  } 
+
+ const handler = async (req: NextRequest) => {
     console.error('Error in API route:', error);
     // Return a generic error message to the client
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
