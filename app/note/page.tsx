@@ -25,9 +25,10 @@ export default function NotesyncPage() {
 
         // IMPORTANT: access the 'notes' array inside data object
         setNotes(data.data.notes);
-      } catch (e: React.MouseEvent<HTMLButtonElement>) {
-        setError(err.message);
-      } finally {
+      } catch (e: any) {
+  setError(e.message || "An unexpected error occurred");
+}
+ finally {
         setLoading(false);
       }
     };
