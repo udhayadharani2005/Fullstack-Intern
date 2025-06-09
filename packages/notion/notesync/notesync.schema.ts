@@ -1,6 +1,3 @@
-
-// packages/integrations/notion/notesync/notesync.schema.ts
-
 import { z } from "zod";
 
 /**

@@ -1,19 +1,25 @@
-
-// app/api/notion/notesync/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { listNotes } from "@/packages/integrations/notion/notesync/notesync.functions";
+import { listNotes } from "@/packages/notion/notesync/notesync.functions";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
 
   // Extract query parameters
-  const maxResults = parseInt(searchParams.get("maxResults") || "10");
+  let maxResults = parseInt(searchParams.get("maxResults") || "10");
+  if (isNaN(maxResults) || maxResults < 1) {
+    maxResults = 10;
+  } else if (maxResults > 100) {
+    maxResults = 100;
+  }
+
   const query = searchParams.get("query") || undefined;
 
   try {
     const result = await listNotes({ maxResults, query });
-    return NextResponse.json({ success: true, data: result });
+    // result has { notes: [...], total: number }
+    return NextResponse.json({ success: true, data: result }, { status: 200 });
   } catch (error: any) {
+    console.error("Error in /api/notion:", error);
     return NextResponse.json(
       {
         success: false,

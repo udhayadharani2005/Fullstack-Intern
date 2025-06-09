@@ -1,6 +1,3 @@
-
-// packages/integrations/notion/notesync/notesync.functions.ts
-
 import { listNotesSchema, ListNotesInput } from "./notesync.schema";
 
 /**

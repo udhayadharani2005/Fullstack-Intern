@@ -1,6 +1,3 @@
-
-// packages/integrations/notion/notesync/notesync.embed.ts
-
 /**
  * This could be a render function for embedding notes in a dashboard.
  * For now, it's just a placeholder for embed support.
