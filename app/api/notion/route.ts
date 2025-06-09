@@ -15,17 +15,18 @@ export async function GET(req: NextRequest) {
   const query = searchParams.get("query") || undefined;
 
   try {
-    const result = await listNotes({ maxResults, query });
-    // result has { notes: [...], total: number }
-    return NextResponse.json({ success: true, data: result }, { status: 200 });
-  } } catch (error: unknown) {
+  const result = await listNotes({ maxResults, query });
+  // result has { notes: [...], total: number }
+  return NextResponse.json({ success: true, data: result }, { status: 200 });
+} catch (error: unknown) {
   const errMsg = error instanceof Error ? error.message : 'Notion API error';
-    return NextResponse.json(
-      {
-        success: false,
-        error: error.message || "Invalid input",
-      },
-      { status: 400 }
-    );
-  }
+  return NextResponse.json(
+    {
+      success: false,
+      error: errMsg || "Invalid input",
+    },
+    { status: 400 }
+  );
+}
+
 }
