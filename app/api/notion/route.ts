@@ -18,8 +18,8 @@ export async function GET(req: NextRequest) {
     const result = await listNotes({ maxResults, query });
     // result has { notes: [...], total: number }
     return NextResponse.json({ success: true, data: result }, { status: 200 });
-  } catch (error: any) {
-    console.error("Error in /api/notion:", error);
+  } } catch (error: unknown) {
+  const errMsg = error instanceof Error ? error.message : 'Notion API error';
     return NextResponse.json(
       {
         success: false,
