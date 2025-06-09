@@ -25,9 +25,15 @@ export default function NotesyncPage() {
 
         // IMPORTANT: access the 'notes' array inside data object
         setNotes(data.data.notes);
-      } catch (e: any) {
-  setError(e.message || "An unexpected error occurred");
+      
+      } catch (e) {
+  if (e instanceof Error) {
+    setError(e.message);
+  } else {
+    setError("An unknown error occurred");
+  }
 }
+
  finally {
         setLoading(false);
       }
